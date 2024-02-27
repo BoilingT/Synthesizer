@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AudioCapture.cpp" />
+    <ClCompile Include="ChronoTime.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Synthesizer.cpp" />
     <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioCapture.h" />
+    <ClInclude Include="ChronoTime.h" />
     <ClInclude Include="Synthesizer.h" />
     <ClInclude Include="Wave.h" />
   </ItemGroup>

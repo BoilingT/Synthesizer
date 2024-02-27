@@ -1,10 +1,15 @@
 #include "AudioCapture.h"
 
-AudioCapture::AudioCapture(double sampleRate)
+typedef void AudioCallback(const void* input, const void* output, unsigned long frameCount);
+
+static AudioCallback* audioCallbackPtr;
+
+AudioCapture::AudioCapture(double sampleRate, AudioCallback* audioCallback)
 {
 	std::cout << "Initializing..." << std::endl;
-	AudioCapture::sampleRate = sampleRate;
+	audioCallbackPtr = audioCallback;
 
+	AudioCapture::sampleRate = sampleRate;
 	//Init PortAudio
 	PaError error = Pa_Initialize();
 	if (error != paNoError)
@@ -32,7 +37,7 @@ void AudioCapture::OpenStream()
 
 	float data = 0;
 	PaError error = Pa_OpenDefaultStream(&stream,
-		1,
+		0,
 		2,
 		paFloat32,
 		sampleRate,
@@ -100,22 +105,7 @@ typedef struct
 
 int AudioCapture::PaStreamCallback(const void* input, void* output, unsigned long frameCount, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
 {
-	paTestData* data = (paTestData*) userData;
-	float* out = (float*) output;
-	float* in = (float*) input;
-
-	float volume = in[0];
-
-	for (int i = 0; i < frameCount; i++)
-	{
-		out[i] = 0.1f;
-	}
-
-	std::cout << volume << std::endl;
-
-
-	//std::cout << "Playing and receiving sound..." << std::endl;
-
+	audioCallbackPtr(input, output, frameCount);
 	return 0;
 }
 
