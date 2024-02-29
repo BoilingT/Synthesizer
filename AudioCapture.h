@@ -6,8 +6,12 @@ class AudioCapture
 {
 private:
 	double sampleRate = 44100;
-	double framesPerBuffer = 5;
+	double framesPerBuffer = 254;
+	int inputChannels = 0;
+	int outputChannels = 2;
+
 	PaStream* stream = nullptr;
+
 	typedef void AudioCallback(const void* input, const void* output, unsigned long frameCount);
 
 public:

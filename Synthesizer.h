@@ -3,12 +3,16 @@
 #include "AudioCapture.h"
 #include "ChronoTime.h"
 
+
 class Synthesizer
 {
 private:
 	AudioCapture audioCapture;
 
 public:
+
+
+
 	Synthesizer();
 
 	//Play a frequency (Hz) for a period of time (s)

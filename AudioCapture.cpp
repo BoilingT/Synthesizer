@@ -37,8 +37,8 @@ void AudioCapture::OpenStream()
 
 	float data = 0;
 	PaError error = Pa_OpenDefaultStream(&stream,
-		0,
-		2,
+		inputChannels,
+		outputChannels,
 		paFloat32,
 		sampleRate,
 		framesPerBuffer,

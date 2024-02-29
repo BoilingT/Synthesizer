@@ -6,7 +6,7 @@ int main()
 {
 	Synthesizer synth;
 
-	synth.play(5, 440);
+	synth.play(4, 440);
 
 	return 0;
 }
